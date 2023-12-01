@@ -22,18 +22,20 @@ class Result {
      */
 
     public static int getMaxValue(List<Integer> arr) {
-        
-    // Write your code here
-    
-     Collections.sort(arr);    
-     
-     arr.set(0, Math.max(arr.get(0), 1));    
-     for (int i = 1; i < arr.size(); i++) {
-         if (arr.get(i) - arr.get(i - 1) > 1) {
-             arr.set(i, arr.get(i - 1) + 1);
+        // Sort the list in ascending order
+        Collections.sort(arr);
+
+        // Ensure the first element is 1 (reduce it if necessary)
+        arr.set(0, Math.max(arr.get(0), 1));
+
+        // Ensure the difference between adjacent elements is at most 1
+        for (int i = 1; i < arr.size(); i++) {
+            if (arr.get(i) - arr.get(i - 1) > 1) {
+                arr.set(i, arr.get(i - 1) + 1);
             }
         }
-                
+
+        // The maximum value for the final element is the last element in the sorted list
         return arr.get(arr.size() - 1);
     }
 
